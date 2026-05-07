@@ -11,6 +11,21 @@ export const Route = createFileRoute('/youtube')({
   component: RouteComponent,
 })
 
+
+  function useDebounce(value, delay){
+    const [debounceValue, setDebounceValue] = useState(value);
+
+    useEffect(() => {
+      const timeout = setTimeout(() => {
+        setDebounceValue(value);
+      }, delay);
+    
+      return () => {clearTimeout(timeout)}
+    }, [value, delay])
+    
+    return debounceValue;
+  }
+
 function RouteComponent() {
 
   const [sortBy, setSortBy] = useState("");
@@ -18,9 +33,11 @@ function RouteComponent() {
   const [page, setPage] = useState(1);
   const [theme, setTheme] = useState('dark');
   const  [videoArray, setVideoArray] = useState([]);
+  const [query, setQuery] = useState("");
+  const debounceQuery = useDebounce(query, 500); //500ms gap
 
   async function fetchYoutubeVideo(){
-    const response = await axios.get(`https://api.freeapi.app/api/v1/public/youtube/videos?page=${page}&limit=12&sortBy=${sortBy}`, {
+    const response = await axios.get(`https://api.freeapi.app/api/v1/public/youtube/videos?page=${page}&limit=12&query=${debounceQuery}&sortBy=${sortBy}`, {
       headers: {
         "Content-Type": "application/json"
       }
@@ -33,7 +50,7 @@ function RouteComponent() {
 
   useEffect(() => {
     fetchYoutubeVideo();
-  }, [page, sortBy])
+  }, [page, sortBy, debounceQuery])
   
 
 
@@ -74,6 +91,7 @@ function RouteComponent() {
             ? "bg-[#121212] border border-[#303030] text-white placeholder:text-gray-400"
             : "bg-white border border-[#e5e5e5] text-black placeholder:text-gray-500"
         }`}
+        onChange={(e)=> setQuery(e.target.value)}
       />
 
       <button
