@@ -35,17 +35,27 @@ function RouteComponent() {
   const  [videoArray, setVideoArray] = useState([]);
   const [query, setQuery] = useState("");
   const debounceQuery = useDebounce(query, 500); //500ms gap
+  const [loader, setLoader] = useState(false);
 
   async function fetchYoutubeVideo(){
-    const response = await axios.get(`https://api.freeapi.app/api/v1/public/youtube/videos?page=${page}&limit=12&query=${debounceQuery}&sortBy=${sortBy}`, {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-
-    setVideoArray(response.data.data.data);
-    setTotalPage(response.data.data.totalPages);
-    // console.log(response.data.data);
+    setLoader(true);
+    try {
+      const response = await axios.get(`https://api.freeapi.app/api/v1/public/youtube/videos?page=${page}&limit=12&query=${debounceQuery}&sortBy=${sortBy}`, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
+  
+      setVideoArray(response.data.data.data);
+      setTotalPage(response.data.data.totalPages);
+      // console.log(response.data.data);
+      
+    } catch (err) {
+      console.error(err)
+    }
+    finally{
+      setLoader(false);
+    }
   }
 
   useEffect(() => {
@@ -200,7 +210,11 @@ function RouteComponent() {
     }`}
   >
     <div className="flex justify-center flex-wrap gap-5">
-      {videoArray.map((video, idx) => {
+      {loader ? 
+      (<div className="flex justify-center items-center w-full h-[70vh]">
+          <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        </div>)
+      : videoArray.map((video, idx) => {
         return (
           <a href={`https://www.youtube.com/watch?v=${video?.items?.id}`}
             key={idx}
