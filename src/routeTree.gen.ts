@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as YoutubeRouteImport } from './routes/youtube'
 import { Route as RandomUsersRouteImport } from './routes/randomUsers'
 import { Route as RandomCatsRouteImport } from './routes/randomCats'
+import { Route as JokesViewerRouteImport } from './routes/jokesViewer'
 import { Route as ECommerceRouteImport } from './routes/eCommerce'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -30,6 +31,11 @@ const RandomCatsRoute = RandomCatsRouteImport.update({
   path: '/randomCats',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JokesViewerRoute = JokesViewerRouteImport.update({
+  id: '/jokesViewer',
+  path: '/jokesViewer',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ECommerceRoute = ECommerceRouteImport.update({
   id: '/eCommerce',
   path: '/eCommerce',
@@ -44,6 +50,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/eCommerce': typeof ECommerceRoute
+  '/jokesViewer': typeof JokesViewerRoute
   '/randomCats': typeof RandomCatsRoute
   '/randomUsers': typeof RandomUsersRoute
   '/youtube': typeof YoutubeRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/eCommerce': typeof ECommerceRoute
+  '/jokesViewer': typeof JokesViewerRoute
   '/randomCats': typeof RandomCatsRoute
   '/randomUsers': typeof RandomUsersRoute
   '/youtube': typeof YoutubeRoute
@@ -59,19 +67,33 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/eCommerce': typeof ECommerceRoute
+  '/jokesViewer': typeof JokesViewerRoute
   '/randomCats': typeof RandomCatsRoute
   '/randomUsers': typeof RandomUsersRoute
   '/youtube': typeof YoutubeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/eCommerce' | '/randomCats' | '/randomUsers' | '/youtube'
+  fullPaths:
+    | '/'
+    | '/eCommerce'
+    | '/jokesViewer'
+    | '/randomCats'
+    | '/randomUsers'
+    | '/youtube'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/eCommerce' | '/randomCats' | '/randomUsers' | '/youtube'
+  to:
+    | '/'
+    | '/eCommerce'
+    | '/jokesViewer'
+    | '/randomCats'
+    | '/randomUsers'
+    | '/youtube'
   id:
     | '__root__'
     | '/'
     | '/eCommerce'
+    | '/jokesViewer'
     | '/randomCats'
     | '/randomUsers'
     | '/youtube'
@@ -80,6 +102,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ECommerceRoute: typeof ECommerceRoute
+  JokesViewerRoute: typeof JokesViewerRoute
   RandomCatsRoute: typeof RandomCatsRoute
   RandomUsersRoute: typeof RandomUsersRoute
   YoutubeRoute: typeof YoutubeRoute
@@ -108,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RandomCatsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/jokesViewer': {
+      id: '/jokesViewer'
+      path: '/jokesViewer'
+      fullPath: '/jokesViewer'
+      preLoaderRoute: typeof JokesViewerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/eCommerce': {
       id: '/eCommerce'
       path: '/eCommerce'
@@ -128,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ECommerceRoute: ECommerceRoute,
+  JokesViewerRoute: JokesViewerRoute,
   RandomCatsRoute: RandomCatsRoute,
   RandomUsersRoute: RandomUsersRoute,
   YoutubeRoute: YoutubeRoute,
