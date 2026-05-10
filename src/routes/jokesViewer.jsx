@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState, useEffect } from 'react';
-import jokesLoader from '../components/JokeViewer/jokesLoader';
+import JokesLoader from '../components/JokeViewer/JokesLoader';
 import JokePageBtn from '../components/JokeViewer/JokePageBtn';
 import JokeNavBar from '../components/JokeViewer/JokeNavBar';
 
@@ -52,7 +52,7 @@ function RouteComponent() {
   }`}
 >
       {loader ? 
-        <jokesLoader />
+        <JokesLoader />
       :
       jokes.map((joke)=> (
         <div

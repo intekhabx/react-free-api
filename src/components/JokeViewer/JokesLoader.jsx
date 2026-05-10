@@ -1,6 +1,6 @@
 import React from 'react'
 
-const jokesLoader = () => {
+const JokesLoader = () => {
   return (
     <div className="flex justify-center items-center w-full h-[70vh]">
 
@@ -65,4 +65,4 @@ const jokesLoader = () => {
   )
 }
 
-export default jokesLoader
+export default JokesLoader
