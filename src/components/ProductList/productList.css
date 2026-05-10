@@ -1,0 +1,137 @@
+/* Page background */
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: Arial, sans-serif;
+}
+
+/* Container */
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Card */
+.card {
+  background: #1e1e1e;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover */
+.card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.9);
+}
+
+/* Image */
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  filter: brightness(0.9);
+}
+
+/* Details */
+.details {
+  padding: 15px;
+}
+
+/* Title */
+.details h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
+/* Price */
+.details p:nth-child(2) {
+  font-weight: bold;
+  color: #4caf50; /* subtle green highlight */
+  margin-bottom: 6px;
+}
+
+/* Category */
+.details p:nth-child(3) {
+  font-size: 14px;
+  color: #aaaaaa;
+}
+
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.pagination button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #2563eb;
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.pagination button:hover {
+  background-color: #1e40af;
+  transform: translateY(-2px);
+}
+
+.pagination button:active {
+  transform: scale(0.95);
+}
+
+.pagination button:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* loading */
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  margin: 20px 0;
+  color: #334155;
+  font-size: 14px;
+  gap: 10px;
+}
+
+/* Spinner */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e2e8f0;
+  border-top: 4px solid #2563eb;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh; /* IMPORTANT */
+  width: 100%;
+}
