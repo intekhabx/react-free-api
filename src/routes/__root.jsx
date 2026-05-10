@@ -16,6 +16,7 @@ const RootLayout = () => {
       <Link to="/randomUsers" className="[&.active]:font-bold"> Random-Users</Link>
       <Link to="/randomCats" className="[&.active]:font-bold"> Random-Cats</Link>
       <Link to="/jokesViewer" className="[&.active]:font-bold"> Jokes-Viewer</Link>
+      <Link to="/quotesListner" className="[&.active]:font-bold"> Quotes-Listener</Link>
     </div>
     <hr />
     <Outlet />
