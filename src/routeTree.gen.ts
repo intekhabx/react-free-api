@@ -14,6 +14,7 @@ import { Route as RandomUsersRouteImport } from './routes/randomUsers'
 import { Route as RandomCatsRouteImport } from './routes/randomCats'
 import { Route as QuotesListnerRouteImport } from './routes/quotesListner'
 import { Route as ProductListRouteImport } from './routes/productList'
+import { Route as MealListRouteImport } from './routes/mealList'
 import { Route as JokesViewerRouteImport } from './routes/jokesViewer'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -42,6 +43,11 @@ const ProductListRoute = ProductListRouteImport.update({
   path: '/productList',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MealListRoute = MealListRouteImport.update({
+  id: '/mealList',
+  path: '/mealList',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const JokesViewerRoute = JokesViewerRouteImport.update({
   id: '/jokesViewer',
   path: '/jokesViewer',
@@ -56,6 +62,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/jokesViewer': typeof JokesViewerRoute
+  '/mealList': typeof MealListRoute
   '/productList': typeof ProductListRoute
   '/quotesListner': typeof QuotesListnerRoute
   '/randomCats': typeof RandomCatsRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/jokesViewer': typeof JokesViewerRoute
+  '/mealList': typeof MealListRoute
   '/productList': typeof ProductListRoute
   '/quotesListner': typeof QuotesListnerRoute
   '/randomCats': typeof RandomCatsRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/jokesViewer': typeof JokesViewerRoute
+  '/mealList': typeof MealListRoute
   '/productList': typeof ProductListRoute
   '/quotesListner': typeof QuotesListnerRoute
   '/randomCats': typeof RandomCatsRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/jokesViewer'
+    | '/mealList'
     | '/productList'
     | '/quotesListner'
     | '/randomCats'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/jokesViewer'
+    | '/mealList'
     | '/productList'
     | '/quotesListner'
     | '/randomCats'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/jokesViewer'
+    | '/mealList'
     | '/productList'
     | '/quotesListner'
     | '/randomCats'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   JokesViewerRoute: typeof JokesViewerRoute
+  MealListRoute: typeof MealListRoute
   ProductListRoute: typeof ProductListRoute
   QuotesListnerRoute: typeof QuotesListnerRoute
   RandomCatsRoute: typeof RandomCatsRoute
@@ -158,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductListRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mealList': {
+      id: '/mealList'
+      path: '/mealList'
+      fullPath: '/mealList'
+      preLoaderRoute: typeof MealListRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/jokesViewer': {
       id: '/jokesViewer'
       path: '/jokesViewer'
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   JokesViewerRoute: JokesViewerRoute,
+  MealListRoute: MealListRoute,
   ProductListRoute: ProductListRoute,
   QuotesListnerRoute: QuotesListnerRoute,
   RandomCatsRoute: RandomCatsRoute,

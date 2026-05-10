@@ -17,6 +17,7 @@ const RootLayout = () => {
       <Link to="/randomCats" className="[&.active]:font-bold"> Random-Cats</Link>
       <Link to="/jokesViewer" className="[&.active]:font-bold"> Jokes-Viewer</Link>
       <Link to="/quotesListner" className="[&.active]:font-bold"> Quotes-Listener</Link>
+      <Link to="/mealList" className="[&.active]:font-bold"> Meal-List</Link>
     </div>
     <hr />
     <Outlet />
