@@ -1,0 +1,7 @@
+node_modules/
+.tanstack/
+dist/
+build/
+coverage/
+*.log
+__root.jsx
